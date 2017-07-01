@@ -6,19 +6,20 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App {
+public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, ReportJakiUdzial, ReportIlePracownikow, ReportSumaGodzin, RemoveAllData, AddSampleData, ReadDataFromFolder {
 	
-	private static List<DataEntry> reportList = new ArrayList<DataEntry>();
+	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
-	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
-	static String yourChoice = "";
 	
     public static void main(String[] args) {
     	
     	Scanner scanner = new Scanner(System.in);
     	
-    	//App data = new App();
+    	String yourChoice = "";
+    	
+    	App data = new App();
     	
         System.out.println("Witamy w systemie analizy czasu pracy!\n");
         do {
@@ -34,37 +35,47 @@ public class App {
         	System.out.println("7. Add sample data");
         	System.out.println("8. Delete all data");
         	System.out.println("9. Koniec\n");
+        	
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
         		ReadDataFromFile.readData();
         		break;
         	case "1":
-        		ReadDataFromFolder.readData();
+        		//ReadDataFromFolder.readData();
+        		data.readDataFromFolder(data);
         		break;
         	case "2":
-        		ReportSimple.createReport();
+        		//ReportSimple.createReport();
+        		data.createReportSimple(data);
         		break;
         	case "3a":
-        		ReportIlePracownikow.createReport();
+        		//ReportIlePracownikow.createReport();
+        		data.createReportIlePracownikow(data);
         		break;
         	case "3b":
-        		ReportSumaGodzin.createReport();
+        		//ReportSumaGodzin.createReport();
+        		data.createReportSumaGodzin(data);
         		break;
         	case "3c":
-        		ReportIleKosztuje.createReport();
+        		//ReportIleKosztuje.createReport();
+        		data.createReportIleKosztuje(data);
         		break;
         	case "3d":
-        		ReportJakiUdzial.createReport();
+        		//ReportJakiUdzial.createReport();
+        		data.createReportJakiUdzial(data);
         		break;
         	case "3e":
-        		ReportIloscGodzin.createReport();
+        		//ReportIloscGodzin.createReport();
+        		data.createReportIloscGodzin(data);
         		break;
         	case "7":
-        		AddSampleData.addSampleData();
+        		//AddSampleData.addSampleData();
+        		data.addSampleData(data);
         		break;
         	case "8":
-        		RemoveAllData.removeAllData();
+        		//RemoveAllData.removeAllData();
+        		data.removeAllData(data);
         		break;
         	case "9":
         		System.out.println("Good bye...");
@@ -80,15 +91,16 @@ public class App {
         scanner.close();
     }
     
-    public static List<DataEntry> getReportList(){
+    
+    public List<DataEntry> getReportList(){
 		return reportList;
     }
     
-    public static void addReportListEntry(DataEntry dataEntry) {
+    public void addReportListEntry(DataEntry dataEntry) {
     	reportList.add(dataEntry);
     }
     
-    public static void clearReportList(){
+    public void clearReportList(){
     	reportList.clear();
     }
     

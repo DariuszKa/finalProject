@@ -2,14 +2,14 @@ package report;
 
 import java.util.Scanner;
 
-public class RemoveAllData {
+public interface RemoveAllData {
 	
-	public static void removeAllData() {
+	public default void removeAllData(App data) {
 		
 		if(getUserInput("Czy jesteœ pewien/pewna? tak/nie ").contains("tak")) {
-			if(!App.getReportList().isEmpty()) {
+			if(!data.getReportList().isEmpty()) {
 				if(getUserInput("Czy jesteœ pewien/pewna ¿e jesteœ pewien/pewna? tak/nie ").contains("tak")) {
-					App.clearReportList();
+					data.clearReportList();
 				} 
 				else {
 					System.out.println("To dobrze ¿e nie jesteœ pewien/pewna ¿e jesteœ pewien/pewna");
@@ -24,10 +24,13 @@ public class RemoveAllData {
 		}
 	}
 	
-	private static String getUserInput(String question) {
-		Scanner scanner = new Scanner(System.in);
+	@SuppressWarnings("resource")
+	default String getUserInput(String question) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println(question);
-		return scanner.next();
+		String answer = sc.next();
+		//sc.close();
+		return answer;
 	}
 
 }

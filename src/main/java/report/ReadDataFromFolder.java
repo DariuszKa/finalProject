@@ -1,8 +1,8 @@
 package report;
 
-public class ReadDataFromFolder {
+public interface ReadDataFromFolder {
 	
-	public static void readData() {
+	public default void readDataFromFolder(App data) {
 		System.out.println("Read data from folder:");
 		System.out.println("...to be implemented by YOU!");
 	}
