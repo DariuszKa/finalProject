@@ -16,11 +16,11 @@ public interface RemoveAllData {
 				}
 			}
 			else {
-				System.out.println("There is no data");
+				System.out.println("Nie by³o danych");
 			}
 		}
 		else {
-			System.out.println("Data removal - aborting");
+			System.out.println("Anulowano usuwanie danych");
 		}
 	}
 	

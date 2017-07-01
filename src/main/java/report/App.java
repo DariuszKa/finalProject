@@ -13,7 +13,7 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
 	
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongDataEntryValueException {
     	
     	Scanner scanner = new Scanner(System.in);
     	
@@ -27,8 +27,8 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         	System.out.println("0. Wczytaj dane z pliku");
         	System.out.println("1. Wczytaj dane z katalogu");
         	System.out.println("2. Prosty wydruk danych");
-        	System.out.println("3a. Raport - Ile pracowników œrednio pracuje na dobê/miesi¹c/rok");
-        	System.out.println("3b. Raport - Suma godzin");
+        	System.out.println("3a. Raport - Suma godzin");
+        	System.out.println("3b. Raport - Ile pracowników œrednio pracuje na dobê/miesi¹c/rok");
         	System.out.println("3c. Raport - Ile kosztuje projekt miesiêcznie");
         	System.out.println("3d. Raport - Jaki jest % udzia³u pracowników w projekcie");
         	System.out.println("3e. Raport - Iloœæ godzin spêdzonych przez pracownika w projekcie(dni tygodnia)");
@@ -42,43 +42,34 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         		ReadDataFromFile.readData();
         		break;
         	case "1":
-        		//ReadDataFromFolder.readData();
         		data.readDataFromFolder(data);
         		break;
         	case "2":
-        		//ReportSimple.createReport();
         		data.createReportSimple(data);
         		break;
         	case "3a":
-        		//ReportIlePracownikow.createReport();
-        		data.createReportIlePracownikow(data);
-        		break;
-        	case "3b":
-        		//ReportSumaGodzin.createReport();
         		data.createReportSumaGodzin(data);
         		break;
+        	case "3b":
+        		data.createReportIlePracownikow(data);
+        		break;
         	case "3c":
-        		//ReportIleKosztuje.createReport();
         		data.createReportIleKosztuje(data);
         		break;
         	case "3d":
-        		//ReportJakiUdzial.createReport();
         		data.createReportJakiUdzial(data);
         		break;
         	case "3e":
-        		//ReportIloscGodzin.createReport();
         		data.createReportIloscGodzin(data);
         		break;
         	case "7":
-        		//AddSampleData.addSampleData();
         		data.addSampleData(data);
         		break;
         	case "8":
-        		//RemoveAllData.removeAllData();
         		data.removeAllData(data);
         		break;
         	case "9":
-        		System.out.println("Good bye...");
+        		System.out.println("Do widzenia...");
         		break;
     		default:
     			System.out.println("Z³y wybór, spróbuj ponownie...\n");
