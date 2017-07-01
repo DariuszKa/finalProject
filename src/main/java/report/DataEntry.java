@@ -3,13 +3,22 @@ package report;
 import java.util.Date;
 
 public class DataEntry {
-	private int id;
+	private long id;
 	private String employeeName;
 	private String projectName;
 	private Date workDay;
-	private long workTime;
+	private double workTime;
+	private static long entryNo = 0;
 	
-	public int getId(){
+	public DataEntry(String employeeName, String projectName, Date workDay, double workTime) {
+		this.id = entryNo++;
+		this.employeeName = employeeName;
+		this.projectName = projectName;
+		this.workDay = workDay;
+		this.workTime = workTime;
+	}
+	
+	public long getId(){
 		return id;
 	}
 	
@@ -37,7 +46,7 @@ public class DataEntry {
 		this.workDay = workDay;
 	}
 	
-	public long getWorkTime(){
+	public double getWorkTime(){
 		return workTime;
 	}
 	

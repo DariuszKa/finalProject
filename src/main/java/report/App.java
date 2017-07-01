@@ -71,7 +71,7 @@ public class App {
 		return reportList;
     }
     
-    public void addReportListEntry(DataEntry dataEntry) {
+    public static void addReportListEntry(DataEntry dataEntry) {
     	reportList.add(dataEntry);
     }
 }
