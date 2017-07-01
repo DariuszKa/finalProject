@@ -1,19 +1,19 @@
 package report;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DataEntry {
 	private long id;
 	private String employeeName;
 	private String projectName;
-	private Date workDay;
+	private LocalDate workDay;
 	private double workTime;
 	private static long entryNo = 0;
 	
-	public DataEntry(String employeeName, String projectName, Date workDay, double workTime) {
+	public DataEntry(String employeeName, String projectName, LocalDate workDay, double workTime) {
 		this.id = entryNo++;
-		this.employeeName = employeeName;
-		this.projectName = projectName;
+		this.employeeName = employeeName.trim();
+		this.projectName = projectName.trim();
 		this.workDay = workDay;
 		this.workTime = workTime;
 	}
@@ -38,11 +38,11 @@ public class DataEntry {
 		this.projectName = projectName;
 	}
 	
-	public Date getWorkDay(){
+	public LocalDate getWorkDay(){
 		return workDay;
 	}
 	
-	public void setWorkDay(Date workDay) {
+	public void setWorkDay(LocalDate workDay) {
 		this.workDay = workDay;
 	}
 	
