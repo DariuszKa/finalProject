@@ -12,6 +12,9 @@ public class App {
 	static String yourChoice = "";
 	
     public static void main(String[] args) {
+    	
+    	Scanner scanner = new Scanner(System.in);
+    	
         System.out.println("Witamy w systemie analizy czasu pracy!\n");
         do {
         	System.out.println("Wybierz opcjê:");
@@ -24,7 +27,6 @@ public class App {
         	System.out.println("3d. Raport - Jaki jest % udzia³u pracowników w projekcie");
         	System.out.println("3e. Raport - Iloœæ godzin spêdzonych przez pracownika w projekcie(dni tygodnia)");
         	System.out.println("9. Koniec\n");
-        	Scanner scanner = new Scanner(System.in);
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
@@ -61,6 +63,8 @@ public class App {
         	System.out.println();
         	
         } while(!yourChoice.equals("9"));
+        
+        scanner.close();
     }
     
     public List<DataEntry> getReportList(){
