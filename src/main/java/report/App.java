@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class App {
 	
-	private List<DataEntry> reportList = new ArrayList<DataEntry>();
+	private static List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
 	static String yourChoice = "";
 	
@@ -67,7 +67,7 @@ public class App {
         scanner.close();
     }
     
-    public List<DataEntry> getReportList(){
+    public static List<DataEntry> getReportList(){
 		return reportList;
     }
     
