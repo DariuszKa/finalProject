@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,10 +38,10 @@ public class ReadDataFromFile {
                 try {
                     String employeeName = fileName.substring(0, fileName.indexOf('.')).replace("_"," ");
                     String projectName = sheet.getSheetName();
-                    Date data = row.getCell(0).getDateCellValue();
+                    LocalDate workdate = row.getCell(0).getDateCellValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     String zadanie = row.getCell(1).getStringCellValue();
                     double czas  = row.getCell(2).getNumericCellValue();
-                    System.out.println("Pracownik: "+employeeName+  "\nNazwa projektu: "+ projectName + "\nData: "+data +"\nZadanie: "+zadanie + "\nCzas:" + czas+"\n\n");
+                    System.out.println("Pracownik: "+employeeName+  "\nNazwa projektu: "+ projectName + "\nData: "+workdate +"\nZadanie: "+zadanie + "\nCzas:" + czas+"\n\n");
                 } catch (Exception e) {
                     continue;
                 }
