@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class AddSampleData {
 	
 	public static void addSampleData() {
+		System.out.println("addSampleData() started");
 		App.addReportListEntry(new DataEntry("Jeff Kowalski", "czytanie maili", LocalDate.parse("2005-11-12", App.getDF()), 4.0));
 		App.addReportListEntry(new DataEntry("Jeff Kowalski", "meetingi", LocalDate.parse("2017-06-30", App.getDF()), 6.0));
 		App.addReportListEntry(new DataEntry("Agata G¹sienica", "programowanie", LocalDate.now(), 1.5));
@@ -18,5 +19,6 @@ public class AddSampleData {
 		App.addReportListEntry(new DataEntry("Janusz Zawodny", "zaliczenie", LocalDate.now(), 8.0));
 		App.addReportListEntry(new DataEntry("Agata G¹sienica", "zarz¹dzanie zasobami ludzkimi", LocalDate.now(), 30));
 		App.addReportListEntry(new DataEntry("Agata G¹sienica", "wprowadzanie metodologi Kanban", LocalDate.now(), 12));
+		System.out.println("addSampleData() finished");
 	}
 }

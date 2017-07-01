@@ -31,7 +31,8 @@ public class App {
         	System.out.println("3c. Raport - Ile kosztuje projekt miesiêcznie");
         	System.out.println("3d. Raport - Jaki jest % udzia³u pracowników w projekcie");
         	System.out.println("3e. Raport - Iloœæ godzin spêdzonych przez pracownika w projekcie(dni tygodnia)");
-        	System.out.println("8. Add sample data");
+        	System.out.println("7. Add sample data");
+        	System.out.println("8. Delete all data");
         	System.out.println("9. Koniec\n");
         	yourChoice = scanner.next();
         	switch (yourChoice) {
@@ -59,8 +60,11 @@ public class App {
         	case "3e":
         		ReportIloscGodzin.createReport();
         		break;
-        	case "8":
+        	case "7":
         		AddSampleData.addSampleData();
+        		break;
+        	case "8":
+        		RemoveAllData.removeAllData();
         		break;
         	case "9":
         		System.out.println("Good bye...");
@@ -82,6 +86,10 @@ public class App {
     
     public static void addReportListEntry(DataEntry dataEntry) {
     	reportList.add(dataEntry);
+    }
+    
+    public static void clearReportList(){
+    	reportList.clear();
     }
     
     public static DateTimeFormatter getDF() {

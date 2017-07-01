@@ -1,7 +1,6 @@
 package report;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReportSimple {
@@ -16,7 +15,6 @@ public class ReportSimple {
 	}
 	
 	public static String dateToStr(LocalDate date) {
-		//DateTimeFormatter dateTimeFormatter = new DateTimeFormatter(null, null, null, null, null, null, null);
 		return date.toString();
 	}
 
