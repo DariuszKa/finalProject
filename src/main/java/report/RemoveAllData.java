@@ -29,7 +29,6 @@ public interface RemoveAllData {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(question);
 		String answer = sc.next();
-		//sc.close();
 		return answer;
 	}
 

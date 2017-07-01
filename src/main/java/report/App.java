@@ -1,5 +1,6 @@
 package report;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
 	
-    public static void main(String[] args) throws WrongDataEntryValueException {
+    public static void main(String[] args) throws WrongDataEntryValueException, IOException {
     	
     	Scanner scanner = new Scanner(System.in);
     	
@@ -39,7 +40,8 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
-        		ReadDataFromFile.readData();
+        		ReadDataFromFile.readData();	//change to objective
+        		//data.readDataFromFile(data);
         		break;
         	case "1":
         		data.readDataFromFolder(data);
@@ -72,7 +74,7 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         		System.out.println("Do widzenia...");
         		break;
     		default:
-    			System.out.println("Z³y wybór, spróbuj ponownie...\n");
+    			System.out.println("B³êdny wybór, spróbuj ponownie...\n");
     			break;
         	}
         	System.out.println();
