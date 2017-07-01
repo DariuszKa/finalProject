@@ -3,7 +3,9 @@ package report;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -22,21 +24,32 @@ public class ReadDataFromFile {
 	
 	
 	public void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
-		// System.out.println("Hello Worlds!");
 	//	ArrayList<DataEntry> entryList = new ArrayList<DataEntry>();
-		InputStream inp = new FileInputStream("Kowalski_Jan.xls");
-		// InputStream inp = new FileInputStream("workbook.xlsx");
-
+        String fileName = "Kowalski_Jan.xls";
+		InputStream inp = new FileInputStream(fileName);
 		Workbook wb = WorkbookFactory.create(inp);
 
-		Sheet sheet = wb.getSheetAt(0);
+;
+        for (Sheet sheet : wb ) {
+            for (Row row : sheet) {
 
-		Row row = sheet.getRow(0);
-		Cell cell = row.getCell(0);
-		// if (cell == null)
-		// cell = row.createCell(3);
 
-		System.out.println(cell.getStringCellValue());
+                try {
+                    String employeeName = fileName.substring(0, fileName.indexOf('.')).replace("_"," ");
+                    String projectName = sheet.getSheetName();
+                    Date data = row.getCell(0).getDateCellValue();
+                    String zadanie = row.getCell(1).getStringCellValue();
+                    double czas  = row.getCell(2).getNumericCellValue();
+                    System.out.println("Pracownik: "+employeeName+  "\nNazwa projektu: "+ projectName + "\nData: "+data +"\nZadanie: "+zadanie + "\nCzas:" + czas+"\n\n");
+                } catch (Exception e) {
+                    continue;
+                }
+
+            }
+        }
+
+
+
 	}
 	// cell.setCellType(CellType.STRING);
 	// cell.setCellValue("a test");
