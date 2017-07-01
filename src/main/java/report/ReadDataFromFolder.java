@@ -27,11 +27,11 @@ public interface ReadDataFromFolder {
 			System.out.println("Czy podawaæ informacje o plikach innego typu? tak/nie");
 			String informAboutOthers = sc.next();
 			if(informAboutOthers.contains("tak")) others = true;
-			printContentOfFilesInDirectory(directory, recursive, others);
+			printContentOfFilesInDirectory(directory, recursive, others, data);
 		}
 	}
 
-	static void printContentOfFilesInDirectory(File directory, boolean recursive, boolean others) throws IOException {
+	static void printContentOfFilesInDirectory(File directory, boolean recursive, boolean others, App data) throws IOException {
 		File[] files = directory.listFiles();
 		String filePath = "";		
 		
@@ -41,14 +41,14 @@ public interface ReadDataFromFolder {
 				if(file.isFile()){
 					if(filePath.endsWith(".xls")) {
 						System.out.println("Plik '" + filePath + "' - poprawny typ pliku");
-						//readDataFromFile(filePath);
+						data.readDataFromFile(data, filePath);
 					}
 					else if(others) {
 						System.out.println("Plik '" + filePath + "' - inny plik");
 					}
 				} 
 				else if(file.isDirectory() && recursive){
-					printContentOfFilesInDirectory(file, recursive, others);
+					printContentOfFilesInDirectory(file, recursive, others, data);
 				}
 			}
 		}

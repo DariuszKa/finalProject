@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, ReportJakiUdzial, ReportIlePracownikow, ReportSumaGodzin, RemoveAllData, AddSampleData, ReadDataFromFolder {
+public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, ReportJakiUdzial, ReportIlePracownikow, ReportSumaGodzin, RemoveAllData, AddSampleData, ReadDataFromFolder, ReadDataFromFile {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
+	
+	private List<String> employeeList = new ArrayList<String>();
+	
+	private List<String> projectList = new ArrayList<String>();
 	
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
@@ -40,8 +44,8 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
-        		ReadDataFromFile.readData();	//change to objective
-        		//data.readDataFromFile(data);
+        		//ReadDataFromFile.readData();	//change to objective
+        		data.readDataFromFile(data);
         		break;
         	case "1":
         		data.readDataFromFolder(data);
@@ -96,6 +100,33 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
     public void clearReportList(){
     	reportList.clear();
     }
+    
+    
+    public List<String> getEmployeeList(){
+		return employeeList;
+    }
+    
+    public void addEmployee(String employee) {
+    	employeeList.add(employee);
+    }
+    
+    public void clearEmployeeList(){
+    	employeeList.clear();
+    }
+    
+    
+    public List<String> getProjectList(){
+		return projectList;
+    }
+    
+    public void addProject(String project) {
+    	employeeList.add(project);
+    }
+    
+    public void clearProjectList(){
+    	projectList.clear();
+    }
+    
     
     public static DateTimeFormatter getDF() {
     	return formatter;

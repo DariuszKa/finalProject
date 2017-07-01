@@ -10,6 +10,8 @@ public interface RemoveAllData {
 			if(!data.getReportList().isEmpty()) {
 				if(getUserInput("Czy jesteœ pewien/pewna ¿e jesteœ pewien/pewna? tak/nie ").contains("tak")) {
 					data.clearReportList();
+					data.clearEmployeeList();
+					data.clearProjectList();
 				} 
 				else {
 					System.out.println("To dobrze ¿e nie jesteœ pewien/pewna ¿e jesteœ pewien/pewna");

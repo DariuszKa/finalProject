@@ -10,8 +10,8 @@ public class DataEntry {
 	private double workTime;
 	private static long entryNo = 0;
 	
-	public DataEntry(String employeeName, String projectName, LocalDate workDay, double workTime) throws WrongDataEntryValueException {
-		this.id = entryNo++;
+	public DataEntry(String employeeName, String projectName, LocalDate workDay, double workTime, App data) throws WrongDataEntryValueException {
+		this.id = ++entryNo;
 		if(employeeName.trim().length()<3) throw new WrongDataEntryValueException("Za krótka nazwa pracownika!");
 		this.employeeName = employeeName.trim();
 		if(employeeName.trim().length()<3) throw new WrongDataEntryValueException("Za krótka nazwa projektu!");
@@ -22,6 +22,8 @@ public class DataEntry {
 		if(workTime<=0.0) throw new WrongDataEntryValueException("Czas pracy musi byæ wiêkszy od zera!");
 		if(workTime>24.0) throw new WrongDataEntryValueException("Nie mo¿na pracowaæ wiêcej ni¿ 24h na dobê!");
 		this.workTime = workTime;
+		if(!data.getEmployeeList().contains(employeeName)) data.addEmployee(employeeName);
+		if(!data.getProjectList().contains(projectName)) data.addProject(projectName);
 	}
 	
 	public long getId(){
