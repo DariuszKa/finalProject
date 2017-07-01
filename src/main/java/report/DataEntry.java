@@ -1,4 +1,4 @@
-package pl.edu.agh.mwo.timelogcalculator;
+package report;
 
 import java.util.Date;
 
