@@ -1,12 +1,13 @@
 package report;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -16,21 +17,75 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ReadDataFromFile {
-
-	public static void readData() {
-		System.out.println("Read data from file:");
-		System.out.println("...to be implemented by YOU!");
+public interface ReadDataFromFile {
+	
+	@SuppressWarnings("resource")
+	public default void readDataFromFile(App data) {
+		System.out.println("Podaj œcie¿kê i nazwê pliku: ");
+		Scanner sc = new Scanner(System.in);
+		String dirPathname = sc.next();
+		File directory = new File(dirPathname);
+		if(!directory.isDirectory()){
+			if(dirPathname.endsWith(".xls")) {
+				System.out.println("OK - odczytywanie '" + dirPathname + "'");
+				readDataFromFile(data, dirPathname);
+			}
+			else {
+				System.out.println("B³ad - '" + dirPathname + "' jest z³ego typu");
+			}
+		}
+		else {
+			System.out.println("B³¹d! - '" + dirPathname + "' jest katalogiem!");
+		}
+	}
+	
+	public default void readDataFromFile(App data, String fileName) {
+		int rowNo = -1;
+		try {
+			InputStream inp = new FileInputStream(fileName);
+			Workbook wb = WorkbookFactory.create(inp);
+			Sheet sheet = wb.getSheetAt(0);
+			Row row0 = sheet.getRow(0);
+			Cell cell0 = row0.getCell(0);
+			Cell cell1 = row0.getCell(1);
+			Cell cell2 = row0.getCell(2);
+			if(!cell0.toString().contains("Data")) throw new WrongXlsDataException("cell0 content='" + cell0.toString() + "'");
+			if(!cell1.toString().contains("Zadanie")) throw new WrongXlsDataException("cell1 content='" + cell1.toString() + "'");
+			if(!cell2.toString().contains("Czas")) throw new WrongXlsDataException("cell2 content='" + cell2.toString() + "'");
+			for(rowNo = 1; rowNo>0; rowNo++) {
+				Row row = sheet.getRow(rowNo);
+				cell0 = row.getCell(0);
+				if(!cell0.toString().trim().equals("")) {
+					cell1 = row.getCell(1);
+					cell2 = row.getCell(2);
+					String sheetName = sheet.getSheetName();
+					System.out.println(rowNo + " " + fileName + "  " + sheetName + "  cell0=" + cell0 + "  cell1=" + cell1 + "  cell2=" + cell2);
+					String employeeName = fileName.trim().replace(".xls", "").replace("_", " ");
+					int lastIndex = employeeName.lastIndexOf("\\");
+					employeeName = employeeName.substring(lastIndex+1);
+					lastIndex = employeeName.lastIndexOf("/");
+					employeeName = employeeName.substring(lastIndex+1);
+					data.addReportListEntry(new DataEntry(employeeName, cell1.toString(), LocalDate.parse(cell0.toString(), DateTimeFormatter.ofPattern("dd-MMM-yyyy")), Double.parseDouble(cell2.toString()), data));
+				}
+				else {
+					rowNo = Integer.MIN_VALUE;
+				}
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Error!!! in row "+ rowNo + "! " + e.getMessage());
+		}
 	}
 	
 	
-	public void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
-	//	ArrayList<DataEntry> entryList = new ArrayList<DataEntry>();
+	
+	
+	
+	public default void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
         String fileName = "Kowalski_Jan.xls";
 		InputStream inp = new FileInputStream(fileName);
 		Workbook wb = WorkbookFactory.create(inp);
 
-;
         for (Sheet sheet : wb ) {
             for (Row row : sheet) {
 
@@ -51,7 +106,7 @@ public class ReadDataFromFile {
 
 
 
-	}
+}
 	// cell.setCellType(CellType.STRING);
 	// cell.setCellValue("a test");
 	//
@@ -59,5 +114,5 @@ public class ReadDataFromFile {
 	// FileOutputStream fileOut = new FileOutputStream("Kowalski_Jan_out.xls");
 	// wb.write(fileOut);
 	// fileOut.close();
-
+	
 }
