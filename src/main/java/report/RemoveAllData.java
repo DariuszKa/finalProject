@@ -16,11 +16,11 @@ public interface RemoveAllData {
 				}
 			}
 			else {
-				System.out.println("There is no data");
+				System.out.println("Nie by³o danych");
 			}
 		}
 		else {
-			System.out.println("Data removal - aborting");
+			System.out.println("Anulowano usuwanie danych");
 		}
 	}
 	
@@ -29,7 +29,6 @@ public interface RemoveAllData {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(question);
 		String answer = sc.next();
-		//sc.close();
 		return answer;
 	}
 
