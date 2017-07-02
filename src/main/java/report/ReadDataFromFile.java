@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 import org.apache.poi.EncryptedDocumentException;
@@ -66,7 +67,9 @@ public interface ReadDataFromFile {
 					employeeName = employeeName.substring(lastIndex+1);
 					lastIndex = employeeName.lastIndexOf("/");
 					employeeName = employeeName.substring(lastIndex+1);
-					data.addReportListEntry(new DataEntry(employeeName, cell1, LocalDate.parse(cell0, DateTimeFormatter.ofPattern("dd-MMM-yyyy")), Double.parseDouble(cell2), data));
+					System.out.println("cell0 = " + cell0);
+					LocalDate xlsDate1 = row.getCell(0).getDateCellValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					data.addReportListEntry(new DataEntry(employeeName, cell1, xlsDate1, Double.parseDouble(cell2), data));
 				}
 				else {
 					rowNo = Integer.MIN_VALUE;
