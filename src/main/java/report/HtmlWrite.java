@@ -10,14 +10,7 @@ public class HtmlWrite {
 	
 	
 	
-	public static void printCsv(ArrayList<ArrayList<String>> lista, String path) throws IOException {
-//	ArrayList<ArrayList<String>> lista = new ArrayList<>();
-//	ArrayList<String> elementListy = new ArrayList<String>();
-//	elementListy.add("Maj");
-//	elementListy.add("Jan Kowalski");
-//	elementListy.add("200");
-//	lista.add(elementListy);
-//	lista.add(elementListy);
+	public static void printHtml(ArrayList<ArrayList<String>> lista, String path) throws IOException {
 
 		
         BufferedWriter output = null;
@@ -27,11 +20,39 @@ public class HtmlWrite {
              file.createNewFile();
              System.out.println("File is created");
              writer = new FileWriter(file);
+             writer.write("<!doctype html>"
+             		+ "<html lang=\"en\">\r\n" + 
+             		"<head>\r\n" + 
+             		"  <meta charset=\"utf-8\">\r\n" + 
+             		"\r\n" + 
+             		"  <title>Raport</title>\r\n" +            		
+             		
+             		
+             		
+             		"</head>\r\n" + 
+             		"\r\n" + 
+             		"<body>\r\n"  +
+             		"<table  border=\"1\">"
+             		);
+
+             
+             
+             
+             
              
             for (ArrayList<String> li : lista) {
-            	 writer.write(String.join(", ", li)+"\n"); 
-            	 
+            	writer.write("<tr>");
+            	// writer.write(String.join(", ", li)+"\n");
+            	for (String el : li) {
+            		writer.write("<td>" +el+ "</td>");
+            	}
+            	
+            	 writer.write("</tr>\n");
 			}
+            
+            writer.write( "</table>" +          		
+            		"</body>\r\n" + 
+            		"</html>");
 
         } catch ( IOException e ) {
             e.printStackTrace();

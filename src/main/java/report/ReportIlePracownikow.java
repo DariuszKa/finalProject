@@ -12,8 +12,10 @@ public class ReportIlePracownikow {
 		lista = testReport.returnReport3B();
 		testReport.printReport3B();
 		String path = "test2.csv";
+		String pathHtml = "test2.html";
 		CsvWrite csWrite = new CsvWrite();
 		csWrite.printCsv(lista, path);
+		HtmlWrite.printHtml(lista, pathHtml);
 	}
 
 }
