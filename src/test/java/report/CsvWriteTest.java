@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CsvWriteTest {
 	public static ArrayList<ArrayList<String>> lista;
-	String path = "test1.csv";
+	String path = "test2.csv";
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		lista = new ArrayList<>();
