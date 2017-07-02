@@ -13,11 +13,10 @@ public class ReportSumaGodzin {
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Tworzenie raportu Suma Godzin...");
 		System.out.println("Podaj imiê nazwisko pracownika: (* - wszyscy) ");
-		String filterEmployeeName = sc.next().trim();
+		String filterEmployeeName = sc.nextLine().trim();
 		
-		Scanner sc2 = new Scanner(System.in);
 		System.out.println("Podaj nazwê projektu: (* - wszystkie) ");
-		String filterProject = sc2.next().trim();
+		String filterProject = sc.nextLine().trim();
 		
 		ArrayList<String> titleLine = new ArrayList<String>();
 		titleLine.add("Miesi¹c/Rok");
@@ -41,7 +40,7 @@ public class ReportSumaGodzin {
 		}
 		
 		System.out.println("Zapis do pliku .csv - podaj nazwê pliku ze œcie¿k¹: ");
-		String path = sc.next().trim();
+		String path = sc.nextLine().trim();
 		new CsvWrite().printCsv(results, path);
 		
 	}
