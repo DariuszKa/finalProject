@@ -53,7 +53,7 @@ public interface ReadDataFromFolder {
 			}
 		}
 		catch(NullPointerException e) {
-			System.out.println("B³¹d odczytu pliku" + filePath + "!!!");
+			System.out.println("Koniec pliku '" + filePath + "'");
 		}
 				
 	}

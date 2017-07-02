@@ -44,7 +44,6 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
-        		//ReadDataFromFile.readData();	//change to objective
         		data.readDataFromFile(data);
         		break;
         	case "1":

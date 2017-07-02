@@ -46,18 +46,19 @@ public interface ReadDataFromFile {
 			Workbook wb = WorkbookFactory.create(inp);
 			Sheet sheet = wb.getSheetAt(0);
 			Row row0 = sheet.getRow(0);
-			Cell cell0 = row0.getCell(0);
-			Cell cell1 = row0.getCell(1);
-			Cell cell2 = row0.getCell(2);
-			if(!cell0.toString().contains("Data")) throw new WrongXlsDataException("cell0 content='" + cell0.toString() + "'");
-			if(!cell1.toString().contains("Zadanie")) throw new WrongXlsDataException("cell1 content='" + cell1.toString() + "'");
-			if(!cell2.toString().contains("Czas")) throw new WrongXlsDataException("cell2 content='" + cell2.toString() + "'");
+			String cell0 = row0.getCell(0).toString().trim();
+			String cell1 = row0.getCell(1).toString().trim();
+			String cell2 = row0.getCell(2).toString().trim();
+			if(!cell0.toString().contains("Data")) throw new WrongXlsDataException("cell0 content='" + cell0 + "'");
+			if(!cell1.toString().contains("Zadanie")) throw new WrongXlsDataException("cell1 content='" + cell1 + "'");
+			if(!cell2.toString().contains("Czas")) throw new WrongXlsDataException("cell2 content='" + cell2 + "'");
 			for(rowNo = 1; rowNo>0; rowNo++) {
 				Row row = sheet.getRow(rowNo);
-				cell0 = row.getCell(0);
+				cell0 = row.getCell(0).toString().trim();
+				//System.out.println(rowNo+ " cell0=" + cell0);
 				if(!cell0.toString().trim().equals("")) {
-					cell1 = row.getCell(1);
-					cell2 = row.getCell(2);
+					cell1 = row.getCell(1).toString().trim();
+					cell2 = row.getCell(2).toString().trim();
 					String sheetName = sheet.getSheetName();
 					System.out.println(rowNo + " " + fileName + "  " + sheetName + "  cell0=" + cell0 + "  cell1=" + cell1 + "  cell2=" + cell2);
 					String employeeName = fileName.trim().replace(".xls", "").replace("_", " ");
@@ -65,15 +66,25 @@ public interface ReadDataFromFile {
 					employeeName = employeeName.substring(lastIndex+1);
 					lastIndex = employeeName.lastIndexOf("/");
 					employeeName = employeeName.substring(lastIndex+1);
-					data.addReportListEntry(new DataEntry(employeeName, cell1.toString(), LocalDate.parse(cell0.toString(), DateTimeFormatter.ofPattern("dd-MMM-yyyy")), Double.parseDouble(cell2.toString()), data));
+					data.addReportListEntry(new DataEntry(employeeName, cell1, LocalDate.parse(cell0, DateTimeFormatter.ofPattern("dd-MMM-yyyy")), Double.parseDouble(cell2), data));
 				}
 				else {
 					rowNo = Integer.MIN_VALUE;
+					break;
 				}
 			}
 		}
-		catch(Exception e) {
-			System.out.println("Error!!! in row "+ rowNo + "! " + e.getMessage());
+		catch(InvalidFormatException e) {
+			System.out.println("InvalidFormatException! " + e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("IOException! " + e.getMessage());
+		}
+		catch(WrongXlsDataException e) {
+			System.out.println("WrongXlsDataException! " + e.getMessage());
+		}
+		catch(WrongDataEntryValueException e) {
+			System.out.println("WrongDataEntryValueException! " + e.getMessage());
 		}
 	}
 	
@@ -103,10 +114,7 @@ public interface ReadDataFromFile {
 
             }
         }
-
-
-
-}
+	}
 	// cell.setCellType(CellType.STRING);
 	// cell.setCellValue("a test");
 	//
