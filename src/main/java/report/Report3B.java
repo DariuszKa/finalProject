@@ -64,7 +64,8 @@ public class Report3B {
 				ArrayList<String> elementListy = new ArrayList<String>();
 				elementListy.add(entryWorkDay.getKey());
 				elementListy.add(name);
-				elementListy.add(entryWorkDay.getValue().toString());
+				double wynik = entryWorkDay.getValue()/20;
+				elementListy.add(String.valueOf(wynik));
 				lista.add(elementListy);		
 			}
 		}
@@ -76,7 +77,8 @@ public class Report3B {
 			String name = entryEmployee.getKey();
 			HashMap<String, Double> valueHaspMap = entryEmployee.getValue();
 			for (Map.Entry<String, Double> entryWorkDay : valueHaspMap.entrySet()) {
-				System.out.println(entryWorkDay.getKey()+", "+name+", "+entryWorkDay.getValue());
+				double wynik = entryWorkDay.getValue()/20;
+				System.out.println(entryWorkDay.getKey()+", "+name+", "+wynik);
 			}
 		}
 		
