@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 import org.apache.poi.EncryptedDocumentException;
@@ -17,10 +18,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public interface ReadDataFromFile {
+public class ReadDataFromFile {
 	
 	@SuppressWarnings("resource")
-	public default void readDataFromFile(App data) {
+	public void readDataFromFile(App data) {
 		System.out.println("Podaj œcie¿kê i nazwê pliku: ");
 		Scanner sc = new Scanner(System.in);
 		String dirPathname = sc.next();
@@ -39,7 +40,7 @@ public interface ReadDataFromFile {
 		}
 	}
 	
-	public default void readDataFromFile(App data, String fileName) {
+	public void readDataFromFile(App data, String fileName) {
 		int rowNo = -1;
 		try {
 			InputStream inp = new FileInputStream(fileName);
@@ -66,7 +67,9 @@ public interface ReadDataFromFile {
 					employeeName = employeeName.substring(lastIndex+1);
 					lastIndex = employeeName.lastIndexOf("/");
 					employeeName = employeeName.substring(lastIndex+1);
-					data.addReportListEntry(new DataEntry(employeeName, cell1, LocalDate.parse(cell0, DateTimeFormatter.ofPattern("dd-MMM-yyyy")), Double.parseDouble(cell2), data));
+					//System.out.println("cell0 = " + cell0);
+					LocalDate xlsDate1 = row.getCell(0).getDateCellValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					data.addReportListEntry(new DataEntry(employeeName, cell1, xlsDate1, Double.parseDouble(cell2), data));
 				}
 				else {
 					rowNo = Integer.MIN_VALUE;
@@ -92,7 +95,7 @@ public interface ReadDataFromFile {
 	
 	
 	
-	public default void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
+	public void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
         String fileName = "Kowalski_Jan.xls";
 		InputStream inp = new FileInputStream(fileName);
 		Workbook wb = WorkbookFactory.create(inp);

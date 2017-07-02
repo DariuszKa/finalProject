@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, ReportJakiUdzial, ReportIlePracownikow, ReportSumaGodzin, RemoveAllData, AddSampleData, ReadDataFromFolder, ReadDataFromFile {
+public class App implements ReportIlePracownikow {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
@@ -44,34 +44,35 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
-        		data.readDataFromFile(data);
+        		new ReadDataFromFile().readDataFromFile(data);
         		break;
         	case "1":
-        		data.readDataFromFolder(data);
+        		new ReadDataFromFolder().readDataFromFolder(data);
         		break;
         	case "2":
-        		data.createReportSimple(data);
+        		new ReportSimple().createReportSimple(data);
         		break;
         	case "3a":
-        		data.createReportSumaGodzin(data);
+        		new ReportSumaGodzin().createReportSumaGodzin(data);
         		break;
         	case "3b":
-        		data.createReportIlePracownikow(data);
+        			//new ReportIlePracownikow().createReportIlePracownikow(data);
+        			data.createReportIlePracownikow(data);
         		break;
         	case "3c":
-        		data.createReportIleKosztuje(data);
+        		new ReportIleKosztuje().createReportIleKosztuje(data);
         		break;
         	case "3d":
-        		data.createReportJakiUdzial(data);
+        		new ReportJakiUdzial().createReportJakiUdzial(data);
         		break;
         	case "3e":
-        		data.createReportIloscGodzin(data);
+        		new ReportIloscGodzin().createReportIloscGodzin(data);
         		break;
         	case "7":
-        		data.addSampleData(data);
+        		new AddSampleData().addSampleData(data);
         		break;
         	case "8":
-        		data.removeAllData(data);
+        		new RemoveAllData().removeAllData(data);
         		break;
         	case "9":
         		System.out.println("Do widzenia...");
