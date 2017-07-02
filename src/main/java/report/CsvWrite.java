@@ -10,7 +10,7 @@ public class CsvWrite {
 	
 	
 	
-	public static void printCsv(ArrayList<ArrayList<String>> lista, String path) throws IOException {
+	public void printCsv(ArrayList<ArrayList<String>> lista, String path) throws IOException {
 //	ArrayList<ArrayList<String>> lista = new ArrayList<>();
 //	ArrayList<String> elementListy = new ArrayList<String>();
 //	elementListy.add("Maj");
