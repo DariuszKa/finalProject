@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ReportSumaGodzin {
 	
 	@SuppressWarnings("resource")
-	public void createReportSumaGodzin(App data) {
+	public void createReportSumaGodzin(App data) throws IOException {
 		
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Tworzenie raportu Suma Godzin...");
@@ -28,9 +28,9 @@ public class ReportSumaGodzin {
 		ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 		results.add(titleLine);
 		
-		List<DataEntry> reportList = data.getFilteredList(filterEmployeeName, filterProject);
+		List<DataEntry> filteredList = data.getFilteredList(filterEmployeeName, filterProject, data);
 		
-		for (DataEntry dataEntry: reportList) {
+		for (DataEntry dataEntry: filteredList) {
 			ArrayList<String> entryLine = new ArrayList<String>();
 			entryLine.add(dataEntry.getWorkDay().toString());
 			entryLine.add(dataEntry.getEmployeeName());
@@ -42,12 +42,7 @@ public class ReportSumaGodzin {
 		
 		System.out.println("Zapis do pliku .csv - podaj nazwê pliku ze œcie¿k¹: ");
 		String path = sc.next().trim();
-		try {
-			new CsvWrite().printCsv(results, path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new CsvWrite().printCsv(results, path);
 		
 	}
 	

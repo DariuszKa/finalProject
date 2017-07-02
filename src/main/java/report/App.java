@@ -92,15 +92,16 @@ public class App {
 		return reportList;
     }
     
-    public List<DataEntry> getFilteredList(String filterEmployeeName, String filterProjectName){
+    public List<DataEntry> getFilteredList(String filterEmployeeName, String filterProjectName, App data){
     	List<DataEntry> filteredList = new ArrayList<>();
-    	for (DataEntry dataEntry: reportList) {
+    	for (DataEntry dataEntry: data.getReportList()) {
     		if(filterEmployeeName.equals("*") || filterEmployeeName.equals(null) || dataEntry.getEmployeeName().equals(filterEmployeeName)) {
-    			if(filterEmployeeName.equals("*") || filterProjectName.equals(null) || dataEntry.getProjectName().equals(filterProjectName)) {
+    			if(filterProjectName.equals("*") || filterProjectName.equals(null) || dataEntry.getProjectName().equals(filterProjectName)) {
     				filteredList.add(dataEntry);
     			}
     		}
     	}
+    	System.out.println("Created filtered list with " + filteredList.size() + " elements");
 		return filteredList;
     }
     
