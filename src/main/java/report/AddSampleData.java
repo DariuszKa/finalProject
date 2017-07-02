@@ -2,9 +2,9 @@ package report;
 
 import java.time.LocalDate;
 
-public interface AddSampleData {
+public class AddSampleData {
 	
-	public default void addSampleData(App data) throws WrongDataEntryValueException {
+	public void addSampleData(App data) throws WrongDataEntryValueException {
 		System.out.println("Dozpoczêto dodawanie przyk³adowych danych...");
 		data.addReportListEntry(new DataEntry("Jeff Kowalski", "czytanie maili", LocalDate.parse("2015-11-12", App.getDF()), 4.0, data));
 		data.addReportListEntry(new DataEntry("Jeff Kowalski", "meetingi", LocalDate.parse("2017-06-30", App.getDF()), 6.0, data));

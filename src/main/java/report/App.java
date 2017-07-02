@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, ReportJakiUdzial, ReportIlePracownikow, ReportSumaGodzin, RemoveAllData, AddSampleData, ReadDataFromFolder, ReadDataFromFile {
+public class App implements ReportSimple, ReportIlePracownikow, ReadDataFromFolder, ReadDataFromFile {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
@@ -53,25 +53,26 @@ public class App implements ReportSimple, ReportIloscGodzin, ReportIleKosztuje, 
         		data.createReportSimple(data);
         		break;
         	case "3a":
-        		data.createReportSumaGodzin(data);
+        		new ReportSumaGodzin().createReportSumaGodzin(data);
         		break;
         	case "3b":
-        		data.createReportIlePracownikow(data);
+        			//new ReportIlePracownikow().createReportIlePracownikow(data);
+        			data.createReportIlePracownikow(data);
         		break;
         	case "3c":
-        		data.createReportIleKosztuje(data);
+        		new ReportIleKosztuje().createReportIleKosztuje(data);
         		break;
         	case "3d":
-        		data.createReportJakiUdzial(data);
+        		new ReportJakiUdzial().createReportJakiUdzial(data);
         		break;
         	case "3e":
-        		data.createReportIloscGodzin(data);
+        		new ReportIloscGodzin().createReportIloscGodzin(data);
         		break;
         	case "7":
-        		data.addSampleData(data);
+        		new AddSampleData().addSampleData(data);
         		break;
         	case "8":
-        		data.removeAllData(data);
+        		new RemoveAllData().removeAllData(data);
         		break;
         	case "9":
         		System.out.println("Do widzenia...");
