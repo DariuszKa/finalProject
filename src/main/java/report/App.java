@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportIlePracownikow {
+public class App {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
@@ -56,8 +56,7 @@ public class App implements ReportIlePracownikow {
         		new ReportSumaGodzin().createReportSumaGodzin(data);
         		break;
         	case "3b":
-        			//new ReportIlePracownikow().createReportIlePracownikow(data);
-        			data.createReportIlePracownikow(data);
+       			new ReportIlePracownikow().createReportIlePracownikow(data);
         		break;
         	case "3c":
         		new ReportIleKosztuje().createReportIleKosztuje(data);
@@ -91,6 +90,18 @@ public class App implements ReportIlePracownikow {
     
     public List<DataEntry> getReportList(){
 		return reportList;
+    }
+    
+    public List<DataEntry> getFilteredList(String filterEmployeeName, String filterProjectName){
+    	List<DataEntry> filteredList = new ArrayList<>();
+    	for (DataEntry dataEntry: reportList) {
+    		if(filterEmployeeName.equals("*") || filterEmployeeName.equals(null) || dataEntry.getEmployeeName().equals(filterEmployeeName)) {
+    			if(filterEmployeeName.equals("*") || filterProjectName.equals(null) || dataEntry.getProjectName().equals(filterProjectName)) {
+    				filteredList.add(dataEntry);
+    			}
+    		}
+    	}
+		return filteredList;
     }
     
     public void addReportListEntry(DataEntry dataEntry) {

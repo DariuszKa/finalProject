@@ -23,7 +23,7 @@ public class CsvWriteTest {
 
 	@Test
 	public void test() throws IOException {
-		CsvWrite.printCsv(lista, path);
+		//CsvWrite.printCsv(lista, path);
 	}
 
 }
