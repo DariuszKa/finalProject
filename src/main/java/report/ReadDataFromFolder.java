@@ -3,10 +3,10 @@ package report;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-public interface ReadDataFromFolder {
+public class ReadDataFromFolder {
 	
 	@SuppressWarnings("resource")
-	public default void readDataFromFolder(App data) throws IOException {
+	public void readDataFromFolder(App data) throws IOException {
 		boolean recursive = false;
 		boolean others = false;
 		System.out.println("Czytanie danych z katalogu...");
@@ -41,7 +41,7 @@ public interface ReadDataFromFolder {
 				if(file.isFile()){
 					if(filePath.endsWith(".xls")) {
 						System.out.println("Plik '" + filePath + "' - poprawny typ pliku");
-						data.readDataFromFile(data, filePath);
+						new ReadDataFromFile().readDataFromFile(data, filePath);
 					}
 					else if(others) {
 						System.out.println("Plik '" + filePath + "' - inny plik");

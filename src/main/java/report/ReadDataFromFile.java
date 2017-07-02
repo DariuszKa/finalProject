@@ -18,10 +18,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public interface ReadDataFromFile {
+public class ReadDataFromFile {
 	
 	@SuppressWarnings("resource")
-	public default void readDataFromFile(App data) {
+	public void readDataFromFile(App data) {
 		System.out.println("Podaj œcie¿kê i nazwê pliku: ");
 		Scanner sc = new Scanner(System.in);
 		String dirPathname = sc.next();
@@ -40,7 +40,7 @@ public interface ReadDataFromFile {
 		}
 	}
 	
-	public default void readDataFromFile(App data, String fileName) {
+	public void readDataFromFile(App data, String fileName) {
 		int rowNo = -1;
 		try {
 			InputStream inp = new FileInputStream(fileName);
@@ -95,7 +95,7 @@ public interface ReadDataFromFile {
 	
 	
 	
-	public default void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
+	public void readXls() throws EncryptedDocumentException, InvalidFormatException, IOException {
         String fileName = "Kowalski_Jan.xls";
 		InputStream inp = new FileInputStream(fileName);
 		Workbook wb = WorkbookFactory.create(inp);
