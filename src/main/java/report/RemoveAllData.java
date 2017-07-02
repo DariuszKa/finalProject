@@ -2,9 +2,9 @@ package report;
 
 import java.util.Scanner;
 
-public interface RemoveAllData {
+public class RemoveAllData {
 	
-	public default void removeAllData(App data) {
+	public void removeAllData(App data) {
 		
 		if(getUserInput("Czy jesteœ pewien/pewna? tak/nie ").contains("tak")) {
 			if(!data.getReportList().isEmpty()) {
@@ -27,7 +27,7 @@ public interface RemoveAllData {
 	}
 	
 	@SuppressWarnings("resource")
-	default String getUserInput(String question) {
+	String getUserInput(String question) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(question);
 		String answer = sc.next();
