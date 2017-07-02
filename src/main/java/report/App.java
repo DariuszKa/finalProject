@@ -96,8 +96,8 @@ public class App implements ReportIlePracownikow {
     public List<DataEntry> getFilteredList(String filterEmployeeName, String filterProjectName){
     	List<DataEntry> filteredList = new ArrayList<>();
     	for (DataEntry dataEntry: reportList) {
-    		if(filterEmployeeName.equals(null) || dataEntry.getEmployeeName().equals(filterEmployeeName)) {
-    			if(filterProjectName.equals(null) || dataEntry.getProjectName().equals(filterProjectName)) {
+    		if(filterEmployeeName.equals("*") || filterEmployeeName.equals(null) || dataEntry.getEmployeeName().equals(filterEmployeeName)) {
+    			if(filterEmployeeName.equals("*") || filterProjectName.equals(null) || dataEntry.getProjectName().equals(filterProjectName)) {
     				filteredList.add(dataEntry);
     			}
     		}
