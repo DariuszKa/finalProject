@@ -19,7 +19,7 @@ public class CsvWrite {
 //	lista.add(elementListy);
 //	lista.add(elementListy);
 
-		String text = "Hello world";
+		
         BufferedWriter output = null;
         FileWriter writer = null;
         try {
@@ -32,8 +32,7 @@ public class CsvWrite {
             	 writer.write(String.join(", ", li)+"\n"); 
             	 
 			}
-            
-     
+
         } catch ( IOException e ) {
             e.printStackTrace();
         } finally {
