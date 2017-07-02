@@ -15,8 +15,9 @@ public class ReportSumaGodzin {
 		System.out.println("Podaj imiê nazwisko pracownika: (* - wszyscy) ");
 		String filterEmployeeName = sc.next().trim();
 		
+		Scanner sc2 = new Scanner(System.in);
 		System.out.println("Podaj nazwê projektu: (* - wszystkie) ");
-		String filterProject = sc.next().trim();
+		String filterProject = sc2.next().trim();
 		
 		ArrayList<String> titleLine = new ArrayList<String>();
 		titleLine.add("Miesi¹c/Rok");

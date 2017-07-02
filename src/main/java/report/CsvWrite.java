@@ -25,7 +25,7 @@ public class CsvWrite {
         try {
         	 File file =new File(path);
              file.createNewFile();
-             System.out.println("File is created");
+             System.out.println("File " + path + " is created");
              writer = new FileWriter(file);
              
             for (ArrayList<String> li : lista) {
