@@ -3,9 +3,9 @@ package report;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public interface ReportIlePracownikow {
+public class ReportIlePracownikow {
 	
-	public default void createReportIlePracownikow(App data) throws IOException {
+	public void createReportIlePracownikow(App data) throws IOException {
 		ArrayList<ArrayList<String>> lista;
 		Report3B testReport = new Report3B(data.getReportList());
 		testReport.prepareReport3B();

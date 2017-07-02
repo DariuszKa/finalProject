@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportIlePracownikow {
+public class App {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
@@ -56,8 +56,7 @@ public class App implements ReportIlePracownikow {
         		new ReportSumaGodzin().createReportSumaGodzin(data);
         		break;
         	case "3b":
-        			//new ReportIlePracownikow().createReportIlePracownikow(data);
-        			data.createReportIlePracownikow(data);
+       			new ReportIlePracownikow().createReportIlePracownikow(data);
         		break;
         	case "3c":
         		new ReportIleKosztuje().createReportIleKosztuje(data);
