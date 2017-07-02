@@ -4,6 +4,13 @@
 
 1. Uruchom program
 
+Wymagania systemowe:
+-Zainstalowanie i skonfigurowanie JDK: https://javastart.pl/static/wprowadzenie/instalacja-jdk/
+- Maven https://maven.apache.org/install.html
+
+Uruchomianie:
+podaj komende: cd FinalProject2 i dalej sciezke >mvn.exec: java
+
 Na konsoli pojawia siê informacja:
 Witamy w systemie analizy czasu pracy!
 
