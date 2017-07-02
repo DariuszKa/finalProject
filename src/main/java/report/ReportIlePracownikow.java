@@ -12,7 +12,8 @@ public interface ReportIlePracownikow {
 		lista = testReport.returnReport3B();
 		testReport.printReport3B();
 		String path = "test2.csv";
-		CsvWrite.printCsv(lista, path);
+		CsvWrite csWrite = new CsvWrite();
+		csWrite.printCsv(lista, path);
 	}
 
 }
