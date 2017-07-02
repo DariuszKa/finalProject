@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class App implements ReportSimple, ReportIlePracownikow, ReadDataFromFolder, ReadDataFromFile {
+public class App implements ReportIlePracownikow {
 	
 	private List<DataEntry> reportList = new ArrayList<DataEntry>();
 	
@@ -44,13 +44,13 @@ public class App implements ReportSimple, ReportIlePracownikow, ReadDataFromFold
         	yourChoice = scanner.next();
         	switch (yourChoice) {
         	case "0":
-        		data.readDataFromFile(data);
+        		new ReadDataFromFile().readDataFromFile(data);
         		break;
         	case "1":
-        		data.readDataFromFolder(data);
+        		new ReadDataFromFolder().readDataFromFolder(data);
         		break;
         	case "2":
-        		data.createReportSimple(data);
+        		new ReportSimple().createReportSimple(data);
         		break;
         	case "3a":
         		new ReportSumaGodzin().createReportSumaGodzin(data);

@@ -7,7 +7,7 @@ public class AddSampleData {
 	public void addSampleData(App data) throws WrongDataEntryValueException {
 		System.out.println("Dozpoczêto dodawanie przyk³adowych danych...");
 		data.addReportListEntry(new DataEntry("Jeff Kowalski", "czytanie maili", LocalDate.parse("2015-11-12", App.getDF()), 4.0, data));
-		data.addReportListEntry(new DataEntry("Jeff Kowalski", "meetingi", LocalDate.parse("2017-06-30", App.getDF()), 6.0, data));
+		data.addReportListEntry(new DataEntry("Jeff Kowalski", "projekty", LocalDate.parse("2017-06-30", App.getDF()), 6.0, data));
 		data.addReportListEntry(new DataEntry("Agata G¹sienica", "programowanie", LocalDate.now(), 1.5, data));
 		data.addReportListEntry(new DataEntry("Andrzej Ma³ecki", "meetingi", LocalDate.parse("2017-06-30", App.getDF()), 3.0, data));
 		data.addReportListEntry(new DataEntry("Abraham Lincoln", "zarz¹dzanie zasobami ludzkimi", LocalDate.parse("2017-06-29", App.getDF()), 11.0, data));
